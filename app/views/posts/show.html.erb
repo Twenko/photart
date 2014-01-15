@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Context:</b>
+  <%= @post.context %>
+</p>
+
+<p>
+  <b>Poster:</b>
+  <%= @post.poster_id %>
+</p>
+
+<p>
+  <b>Adorus:</b>
+  <%= @post.adorus %>
+</p>
+
+<p>
+  <b>Gallery:</b>
+  <%= @post.gallery_id %>
+</p>
+
+<p>
+  <b>Picture ids:</b>
+  <%= @post.picture_ids %>
+</p>
+
+
+<%= link_to 'Edit', edit_post_path(@post) %> |
+<%= link_to 'Back', posts_path %>

@@ -1,0 +1,20 @@
+<h2>Votre profil</h2>
+
+<div>
+	Pseudo<br />
+	<%= @user.username rescue current_user.username %>
+</div>
+
+<div>
+	Nom réel<br />
+	<%= @user.name rescue current_user.name %>
+</div>
+
+<% if user_signed_in? %>
+
+<div>
+	E-mail<br />
+	<%= current_user.email %>
+</div>
+
+<% end %>

@@ -1,0 +1,22 @@
+<h2>Inscription</h2>
+
+<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+  <%= devise_error_messages! %>
+
+  <div>E-mail<br />
+  <%= f.email_field :email, :autofocus => true %></div>
+
+  <div>Pseudo<br />
+  <%= f.text_field :nick %></div>
+
+  <div>Mot de passe<br />
+  <%= f.password_field :password %></div>
+
+  <div>Confirmer le mot de passe<br />
+  <%= f.password_field :password_confirmation %></div>
+
+  <div><%= f.submit "Inscription" %></div>
+<% end %>
+
+<%= render "admins/shared/links" %>
+

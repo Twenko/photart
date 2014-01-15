@@ -1,0 +1,19 @@
+<table>
+  <thead>
+    <tr>
+      <th>Pseudo</th>
+      <th>Nom</th>
+      <th>Date d'inscription</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= link_to user.username, user_path(user) %></td>
+        <td><%= user.name %></td>
+        <td><%= user.created_at.to_formatted_s(:short) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

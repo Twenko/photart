@@ -1,0 +1,18 @@
+<% if user_signed_in? %>
+
+<%else%>
+
+	<% if admin_signed_in? %>
+Connecté! | 
+		<%= link_to 'Déconnexion!', destroy_admin_session_path, :method => :delete %><br />
+	<% else %>
+		<%= link_to 'Connexion', new_admin_session_path %><br />
+	<% end %>
+<% end %>
+
+
+<br /><br />
+
+<% if admin_signed_in? %>
+<%= link_to 'Admin List', :controller => :admin, :action => :list %>
+<% end %>
