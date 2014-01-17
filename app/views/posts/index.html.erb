@@ -1,31 +1,32 @@
-<h1>Listing posts</h1>
-
+<h1>Brèves</h1>
+<% @posts.each do |post| %>
+  <div>
+    <%= post.context %>
+  </div>
+  <div>
+    Ecrit par: <%= post.poster_id %>
+  </div>
+<% end %>
 <table>
   <tr>
-    <th>Context</th>
     <th>Poster</th>
     <th>Adorus</th>
     <th>Gallery</th>
     <th>Picture ids</th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th>Edition</th>
   </tr>
 
 <% @posts.each do |post| %>
   <tr>
-    <td><%= post.context %></td>
     <td><%= post.poster_id %></td>
     <td><%= post.adorus %></td>
     <td><%= post.gallery_id %></td>
     <td><%= post.picture_ids %></td>
-    <td><%= link_to 'Show', post %></td>
     <td><%= link_to 'Edit', edit_post_path(post) %></td>
-    <td><%= link_to 'Destroy', post, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Post', new_post_path %>
+<%= link_to 'Publier une nouvelle brève', new_post_path %>
