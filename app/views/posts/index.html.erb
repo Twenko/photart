@@ -1,15 +1,19 @@
-<h1>Brèves</h1>
+<h1>Brèves</h1><br />
 <% @posts.each do |post| %>
   <div>
     <%= post.context %>
   </div>
   <div>
-    Ecrit par: <%= post.poster_id %>
-  </div>
+    Ecrit par: 
+    <% if post.adorus %>
+    	<%= Admin.find(:first, :conditions => ["id = ?", post.poster_id]).nick %> (Admin)
+    <% else %>
+    	<%= User.find(:first, :conditions => ["id = ?", post.poster_id]).username %>
+    <% end %>
+  </div><br /><br />
 <% end %>
 <table>
   <tr>
-    <th>Poster</th>
     <th>Adorus</th>
     <th>Gallery</th>
     <th>Picture ids</th>
@@ -18,7 +22,6 @@
 
 <% @posts.each do |post| %>
   <tr>
-    <td><%= User.find(:first, :conditions => ["id = ?", post.poster_id]).username %></td>
     <td><%= post.adorus %></td>
     <td><%= post.gallery_id %></td>
     <td><%= post.picture_ids %></td>
@@ -30,3 +33,7 @@
 <br />
 
 <%= link_to 'Publier une nouvelle brève', new_post_path %>
+
+<div>
+	<%= paginate @posts %>
+</div>
