@@ -18,7 +18,7 @@
 
 <% @posts.each do |post| %>
   <tr>
-    <td><%= post.poster_id %></td>
+    <td><%= User.find(:first, :conditions => ["id = ?", post.poster_id]).username %></td>
     <td><%= post.adorus %></td>
     <td><%= post.gallery_id %></td>
     <td><%= post.picture_ids %></td>

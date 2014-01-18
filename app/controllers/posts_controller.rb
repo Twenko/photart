@@ -3,7 +3,7 @@ class PostsController < ApplicationController
   # GET /posts.json
   def index
     @posts = Post.all
-
+    
     respond_to do |format|
       format.html # index.html.erb
       format.json { render :json => @posts }
@@ -34,13 +34,14 @@ class PostsController < ApplicationController
   # GET /posts/1/edit
   def edit
     @post = Post.find(params[:id])
+    @editoration = 1
   end
 
   # POST /posts
   # POST /posts.json
   def create
     @post = Post.new(params[:post])
-    poster_id = @utili.id
+    #params[:poster_id] = @utili.id
 
     respond_to do |format|
       if @post.save
@@ -57,7 +58,7 @@ class PostsController < ApplicationController
   # PUT /posts/1.json
   def update
     @post = Post.find(params[:id])
-    poster_id = @utili.id
+    #params[:poster_id] = @utili.id
 
     respond_to do |format|
       if @post.update_attributes(params[:post])

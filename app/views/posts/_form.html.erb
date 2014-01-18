@@ -16,8 +16,11 @@
     <%= f.text_area :context %>
   </div>
   <div class="field">
-    <%= f.label :poster_id %><br />
-    <%= f.hidden_field :poster_id %>
+    <u><%= f.label :poster_id %></u><br />
+    <% if !@editoration %>
+    <%= current_admin.nick rescue current_user.username%>
+    <%= f.hidden_field :poster_id, :value => @utili.id %>
+    <% end %>
   </div>
   <div class="field">
     <%= f.label :adorus %><br />
