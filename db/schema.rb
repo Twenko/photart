@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140115205709) do
+ActiveRecord::Schema.define(:version => 20140119221457) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",                  :default => "",    :null => false
@@ -33,6 +33,47 @@ ActiveRecord::Schema.define(:version => 20140115205709) do
 
   add_index "admins", ["email"], :name => "index_admins_on_email", :unique => true
   add_index "admins", ["reset_password_token"], :name => "index_admins_on_reset_password_token", :unique => true
+
+  create_table "assets", :force => true do |t|
+    t.string   "asset_file_name"
+    t.string   "asset_content_type"
+    t.integer  "asset_file_size"
+    t.datetime "asset_updated_at"
+    t.integer  "user_id"
+    t.integer  "gallery_id"
+    t.text     "description"
+    t.text     "name"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
+
+  create_table "galleries", :force => true do |t|
+    t.string   "name"
+    t.integer  "picture_id"
+    t.integer  "maingall_id", :default => 0
+    t.text     "description"
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
+  end
+
+  create_table "maingalls", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "pictures", :force => true do |t|
+    t.string   "path"
+    t.integer  "user_id"
+    t.integer  "gallery_id"
+    t.string   "name"
+    t.text     "description"
+    t.string   "size"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.string   "image"
+  end
 
   create_table "posts", :force => true do |t|
     t.text     "context"

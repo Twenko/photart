@@ -1,0 +1,25 @@
+<h1>Listing maingalls</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @maingalls.each do |maingall| %>
+  <tr>
+    <td><%= maingall.name %></td>
+    <td><%= maingall.description %></td>
+    <td><%= link_to 'Show', maingall %></td>
+    <td><%= link_to 'Edit', edit_maingall_path(maingall) %></td>
+    <td><%= link_to 'Destroy', maingall, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Maingall', new_maingall_path %>

@@ -1,4 +1,10 @@
 Photart::Application.routes.draw do
+  resources :maingalls
+
+  resources :galleries
+
+  resources :pictures
+
   resources :posts
 
   devise_for :users

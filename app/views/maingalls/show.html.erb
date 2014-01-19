@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @maingall.name %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @maingall.description %>
+</p>
+
+
+<%= link_to 'Edit', edit_maingall_path(@maingall) %> |
+<%= link_to 'Back', maingalls_path %>

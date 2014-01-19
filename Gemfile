@@ -16,6 +16,12 @@ gem 'passenger'
 #Pagination
 gem 'kaminari'
 
+#file upload
+gem 'rmagick'
+#run => apt-get install libmagickwand-dev
+gem 'carrierwave'
+#gem 'paperclip', '2.3.8'
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
