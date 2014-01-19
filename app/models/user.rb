@@ -15,6 +15,11 @@ class User < ActiveRecord::Base
       end
   end
   
+  before_validation {|u| u.username.downcase! }
+  
+  validates :username,
+            :exclusion => { :in => ["khin"]}
+
   validates :username,
   :uniqueness => {
                    :case_sensitive => false

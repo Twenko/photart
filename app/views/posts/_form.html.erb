@@ -10,22 +10,10 @@
       </ul>
     </div>
   <% end %>
-
   <div class="field">
     Contenu:<br />
     <%= f.text_area :context %>
   </div>
-  <% if !@editoration %>
-  <div class="field">
-    <u><%= f.label :poster_id %></u><br />
-    <%= current_admin.nick rescue current_user.username%>
-    <%= f.hidden_field :poster_id, :value => @utili.id %>
-  </div>
-  <div class="field">
-    <%= f.label :adorus %><br />
-    <%= f.hidden_field :adorus, :value => admin_signed_in? %>
-  </div>
-  <% end %>
   <div class="field">
     <%= f.label :gallery_id %><br />
     <%= f.number_field :gallery_id %>

@@ -42,6 +42,8 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(params[:post])
     #params[:poster_id] = @utili.id
+    @post.update_attribute(:poster_id, @utili.id)
+    @post.update_attribute(:adorus, admin_signed_in?)
 
     respond_to do |format|
       if @post.save
@@ -59,7 +61,7 @@ class PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
     #params[:poster_id] = @utili.id
-
+    
     respond_to do |format|
       if @post.update_attributes(params[:post])
         format.html { redirect_to @post, :notice => 'Post was successfully updated.' }
