@@ -41,6 +41,12 @@ class PicturesController < ApplicationController
   # POST /pictures.json
   def create
     @picture = Picture.new(params[:picture])
+    if admin_signed_in?
+      @picture.update_attributes(:admin => @utili)
+    end
+    if user_signed_in?
+      @picture.update_attributes(:user => @utili)
+    end
 
     respond_to do |format|
       if @picture.save

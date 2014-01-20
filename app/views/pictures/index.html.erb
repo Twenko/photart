@@ -3,6 +3,7 @@
 <table>
   <tr>
     <th>User</th>
+    <th>Admin</th>
     <th>Gallery</th>
     <th>Name</th>
     <th>Description</th>
@@ -14,17 +15,19 @@
   </tr>
 
 <% @pictures.each do |picture| %>
+  <% if picture.image? %>
   <tr>
-    <td><%= picture.user_id %></td>
+    <td><%= picture.user.username rescue ""%></td>
+    <td><%= picture.admin.nick rescue ""%></td>
     <td><%= picture.gallery_id %></td>
     <td><%= picture.name %></td>
     <td><%= picture.description %></td>
-    <td><%= picture.size %></td>
-    <td><%= image_tag picture.image_url(:thumb) if picture.image? %></td>
+    <td><%= image_tag picture.image_url(:thumb) %></td>
     <td><%= link_to 'Show', picture %></td>
     <td><%= link_to 'Edit', edit_picture_path(picture) %></td>
     <td><%= link_to 'Destroy', picture, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
+  <% end %>
 <% end %>
 </table>
 
