@@ -3,7 +3,7 @@ class MaingallsController < ApplicationController
   # GET /maingalls.json
   def index
     @maingalls = Maingall.all
-
+    @single_gal = Gallery.find(:all, :conditions => ["maingall_id = ?", 0])
     respond_to do |format|
       format.html # index.html.erb
       format.json { render :json => @maingalls }
