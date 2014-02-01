@@ -15,16 +15,12 @@
 <table>
   <tr>
     <th>Adorus</th>
-    <th>Gallery</th>
-    <th>Picture ids</th>
     <th>Edition</th>
   </tr>
 
 <% @posts.each do |post| %>
   <tr>
     <td><%= post.adorus %></td>
-    <td><%= post.gallery_id %></td>
-    <td><%= post.picture_ids %></td>
     <td><%= link_to 'Edit', edit_post_path(post) %></td>
   </tr>
 <% end %>

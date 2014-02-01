@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140120202331) do
+ActiveRecord::Schema.define(:version => 20140201182551) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",                  :default => "",    :null => false
@@ -33,6 +33,16 @@ ActiveRecord::Schema.define(:version => 20140120202331) do
 
   add_index "admins", ["email"], :name => "index_admins_on_email", :unique => true
   add_index "admins", ["reset_password_token"], :name => "index_admins_on_reset_password_token", :unique => true
+
+  create_table "articles", :force => true do |t|
+    t.text     "content"
+    t.integer  "poster_id"
+    t.string   "title"
+    t.integer  "gallery_id"
+    t.integer  "picture_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "assets", :force => true do |t|
     t.string   "asset_file_name"
@@ -84,6 +94,7 @@ ActiveRecord::Schema.define(:version => 20140120202331) do
     t.string   "picture_ids"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.integer  "article_id"
   end
 
   create_table "users", :force => true do |t|

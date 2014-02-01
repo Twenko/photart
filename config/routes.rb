@@ -1,4 +1,6 @@
 Photart::Application.routes.draw do
+  resources :articles
+
   resources :maingalls
 
   resources :galleries

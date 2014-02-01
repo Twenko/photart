@@ -1,4 +1,7 @@
 class PostsController < ApplicationController
+  #skip_before_filter :index, :show
+  before_filter :check_if_admin, :except => [:index]
+
   # GET /posts
   # GET /posts.json
   def index
@@ -33,7 +36,24 @@ class PostsController < ApplicationController
 
   # GET /posts/1/edit
   def edit
+    
     @post = Post.find(params[:id])
+    
+    if @post.poster_id != @utili.id
+      #render :action => :index
+      redirect_to root_path
+    else
+      if @post.adorus
+        if user_signed_in?
+          redirect_to root_path
+        end
+      else
+        if !(user_signed_in? || admin_signed_in?)
+          redirect_to root_path
+        end
+      end
+    end
+    
     @editoration = 1
   end
 
@@ -73,6 +93,8 @@ class PostsController < ApplicationController
     end
   end
 
+private
+
   # DELETE /posts/1
   # DELETE /posts/1.json
   def destroy
@@ -84,4 +106,13 @@ class PostsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  def check_if_admin
+    if user_signed_in? || admin_signed_in?
+    else
+    # or you can use the authenticate_user! devise provides to only allow signed_in users
+      raise 'Please sign in!'
+    end
+  end
+  
 end
