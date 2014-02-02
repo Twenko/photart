@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140201182551) do
+ActiveRecord::Schema.define(:version => 20140202111416) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",                  :default => "",    :null => false
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(:version => 20140201182551) do
     t.string   "nick",                   :default => "",    :null => false
     t.string   "name",                   :default => "",    :null => false
     t.boolean  "nick_or_name",           :default => false
+    t.boolean  "activate",               :default => true
   end
 
   add_index "admins", ["email"], :name => "index_admins_on_email", :unique => true
@@ -40,8 +41,9 @@ ActiveRecord::Schema.define(:version => 20140201182551) do
     t.string   "title"
     t.integer  "gallery_id"
     t.integer  "picture_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
+    t.boolean  "activate",   :default => true
   end
 
   create_table "assets", :force => true do |t|
@@ -62,15 +64,17 @@ ActiveRecord::Schema.define(:version => 20140201182551) do
     t.integer  "picture_id"
     t.integer  "maingall_id", :default => 0
     t.text     "description"
-    t.datetime "created_at",                 :null => false
-    t.datetime "updated_at",                 :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+    t.boolean  "activate",    :default => true
   end
 
   create_table "maingalls", :force => true do |t|
     t.string   "name"
     t.text     "description"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+    t.boolean  "activate",    :default => true
   end
 
   create_table "pictures", :force => true do |t|
@@ -80,10 +84,11 @@ ActiveRecord::Schema.define(:version => 20140201182551) do
     t.string   "name"
     t.text     "description"
     t.string   "size"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
     t.string   "image"
     t.integer  "admin_id"
+    t.boolean  "activate",    :default => true
   end
 
   create_table "posts", :force => true do |t|
@@ -92,9 +97,10 @@ ActiveRecord::Schema.define(:version => 20140201182551) do
     t.boolean  "adorus"
     t.integer  "gallery_id"
     t.string   "picture_ids"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
     t.integer  "article_id"
+    t.boolean  "activate",    :default => true
   end
 
   create_table "users", :force => true do |t|
@@ -113,6 +119,7 @@ ActiveRecord::Schema.define(:version => 20140201182551) do
     t.string   "username",               :default => "",    :null => false
     t.string   "name",                   :default => "",    :null => false
     t.boolean  "nick_or_name",           :default => false
+    t.boolean  "activate",               :default => true
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

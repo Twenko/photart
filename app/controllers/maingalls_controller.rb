@@ -1,9 +1,10 @@
 class MaingallsController < ApplicationController
+  before_filter :authenticate_admin!, :except => [:index, :show]
   # GET /maingalls
   # GET /maingalls.json
   def index
-    @maingalls = Maingall.all
-    @single_gal = Gallery.find(:all, :conditions => ["maingall_id = ?", 0])
+    @maingalls = Maingall.find(:all, :conditions => ["activate = ?", true])
+    @single_gal = Gallery.find(:all, :conditions => ["maingall_id = ? AND activate = ?", 0, true])
     respond_to do |format|
       format.html # index.html.erb
       format.json { render :json => @maingalls }
@@ -73,7 +74,7 @@ class MaingallsController < ApplicationController
   # DELETE /maingalls/1.json
   def destroy
     @maingall = Maingall.find(params[:id])
-    @maingall.destroy
+    @maingall.update_attributes(:activate => false)
 
     respond_to do |format|
       format.html { redirect_to maingalls_url }

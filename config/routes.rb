@@ -9,10 +9,30 @@ Photart::Application.routes.draw do
 
   resources :posts
 
-  devise_for :users
+  devise_for :users, :skip => :registrations
+  devise_scope :user do
+    resource :registration,
+    :only => [:new, :create, :edit, :update],
+    :path => 'users',
+    :path_names => { :new => 'sign_up' },
+    :controller => 'devise/registrations',
+    :as => :user_registration do
+      get :cancel
+    end
+  end
 
-  devise_for :admins
-
+  devise_for :admins, :skip => :registrations
+  devise_scope :admin do
+    resource :registration,
+    :only => [:new, :create, :edit, :update],
+    :path => 'admins',
+    :path_names => { :new => 'sign_up' },
+    :controller => 'devise/registrations',
+    :as => :admin_registration do
+      get :cancel
+    end
+  end
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

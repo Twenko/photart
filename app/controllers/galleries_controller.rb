@@ -1,8 +1,9 @@
 class GalleriesController < ApplicationController
+  before_filter :authenticate_admin!, :except => [:index, :show]
   # GET /galleries
   # GET /galleries.json
   def index
-    @galleries = Gallery.all
+    @galleries = Gallery.find(:all, :conditions => ["activate = ?", true], :order => "created_at")
 
     respond_to do |format|
       format.html # index.html.erb
@@ -73,7 +74,7 @@ class GalleriesController < ApplicationController
   # DELETE /galleries/1.json
   def destroy
     @gallery = Gallery.find(params[:id])
-    @gallery.destroy
+    @gallery.update_attributes(:activate => false)
 
     respond_to do |format|
       format.html { redirect_to galleries_url }

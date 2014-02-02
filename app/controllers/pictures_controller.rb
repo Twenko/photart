@@ -1,8 +1,9 @@
 class PicturesController < ApplicationController
+  before_filter :authenticate_admin!, :except => [:index, :show]
   # GET /pictures
   # GET /pictures.json
   def index
-    @pictures = Picture.all
+    @pictures = Picture.find(:all, :conditions => ["activate = ?", true])
 
     respond_to do |format|
       format.html # index.html.erb
@@ -44,9 +45,9 @@ class PicturesController < ApplicationController
     if admin_signed_in?
       @picture.update_attributes(:admin => @utili)
     end
-    if user_signed_in?
-      @picture.update_attributes(:user => @utili)
-    end
+    #if user_signed_in?
+    #  @picture.update_attributes(:user => @utili)
+    #end
 
     respond_to do |format|
       if @picture.save
@@ -79,7 +80,7 @@ class PicturesController < ApplicationController
   # DELETE /pictures/1.json
   def destroy
     @picture = Picture.find(params[:id])
-    @picture.destroy
+    @picture.update_attributes(:activate => false)
 
     respond_to do |format|
       format.html { redirect_to pictures_url }

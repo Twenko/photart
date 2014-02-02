@@ -6,7 +6,9 @@ class PostsController < ApplicationController
   # GET /posts.json
   def index
     #@posts = Post.all
-    @posts = Post.order("created_at").page(params[:page]).per(5)
+#    @posts = Post.order("created_at").page(params[:page]).per(10)
+    @posts = Post.find(:all, :conditions => ["activate = ?", true], :order => "created_at")
+    @posts = Kaminari.paginate_array(@posts).page(params[:page]).per(10)
     respond_to do |format|
       format.html # index.html.erb
       format.json { render :json => @posts }
@@ -93,17 +95,20 @@ class PostsController < ApplicationController
     end
   end
 
-private
 
   # DELETE /posts/1
   # DELETE /posts/1.json
   def destroy
     @post = Post.find(params[:id])
-    @post.destroy
+    if admin_signed_in?
+      @post.update_attributes(:activate => false)
 
-    respond_to do |format|
-      format.html { redirect_to posts_url }
-      format.json { head :no_content }
+      respond_to do |format|
+        format.html { redirect_to posts_url }
+        format.json { head :no_content }
+      end
+    else
+      redirect_to root_path
     end
   end
   

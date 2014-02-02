@@ -1,10 +1,12 @@
 class ArticlesController < ApplicationController
-  before_filter :authenticate_admin!
+  before_filter :authenticate_admin!, :except => [:index, :show]
 
   # GET /articles
   # GET /articles.json
   def index
-    @articles = Article.all
+    #@articles = Article.all
+    @articles = Article.find(:all, :conditions => ["activate = ?", true], :order => "created_at")
+    @articles = Kaminari.paginate_array(@articles).page(params[:page]).per(10)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -75,7 +77,7 @@ class ArticlesController < ApplicationController
   # DELETE /articles/1.json
   def destroy
     @article = Article.find(params[:id])
-    @article.destroy
+    @article.update_attributes(:activate => false)
 
     respond_to do |format|
       format.html { redirect_to articles_url }
