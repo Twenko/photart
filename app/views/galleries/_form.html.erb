@@ -1,3 +1,4 @@
+<br />
 <%= form_for @gallery, :html => { :multipart => true } do |f| %>
   <% if @gallery.errors.any? %>
     <div id="error_explanation">
@@ -21,7 +22,8 @@
   </div>
   <div class="field">
     <%= f.label :maingall_id %><br />
-    <%= f.number_field :maingall_id %>
+    <% maingalls = Maingall.find(:all, :conditions => ["activate = ?", true]).map{ |main| ["#{main.id} Hu", main.id] } %>
+    <%= f.select :maingall_id, options_for_select([["<None>" , 0]] + maingalls) %>
   </div>
   <div class="field">
     <%= f.label :description %><br />
