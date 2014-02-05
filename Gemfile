@@ -20,7 +20,11 @@ gem 'kaminari'
 gem 'rmagick'
 #run => apt-get install libmagickwand-dev
 gem 'carrierwave'
+#nested for multiple pic upload
+#gem 'nested_form'
 #gem 'paperclip', '2.3.8'
+#multiple upload jquery: http://amgrade.com/blogs/thoughts/multiple-files-upload-rails
+gem 'jquery-fileupload-rails'
 
 # Gems used only for assets and not required
 # in production environments by default.

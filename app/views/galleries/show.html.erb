@@ -19,7 +19,9 @@
   <b>Description:</b>
   <%= @gallery.description %>
 </p>
-
-
+<%= form_for Picture.new, :multipart => true do |f| %>
+<%= f.hidden_field :gallery_id, :value => @gallery.id %>
+<%= f.file_field :image, "data-url" => "/pictures", :multiple => "", :name => "picture[image]", :id => "fileupload" %>
+<% end %>
 <%= link_to 'Edit', edit_gallery_path(@gallery) %> |
 <%= link_to 'Back', galleries_path %>

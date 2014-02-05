@@ -4,13 +4,12 @@ class Picture < ActiveRecord::Base
   belongs_to :gallery
   belongs_to :user
   belongs_to :admin
-  #next line is from tutorial
-  belongs_to :attachable, :polymorphic => true
   mount_uploader :image, ImageUploader
+  validate :image, :presence => true
   validate :image_size
   
   def image_size
-    if image.file.size.to_f/(1000*1000) > 10.to_f
+    if (image.file.size.to_f/(1000*1000) > 10.to_f)
       errors.add(:image, "Image trop grande (> 10 mo)")
     end
   end
