@@ -1,8 +1,11 @@
 class Picture < ActiveRecord::Base
-  attr_accessible :gallery_id, :user_id, :name, :description, :size, :image, :remote_image_url, :user, :gallery, :admin, :activate
+  attr_accessible :gallery_id, :user_id, :name, :description, :size, :image,
+                  :remote_image_url, :user, :gallery, :admin, :activate
   belongs_to :gallery
   belongs_to :user
   belongs_to :admin
+  #next line is from tutorial
+  belongs_to :attachable, :polymorphic => true
   mount_uploader :image, ImageUploader
   validate :image_size
   
