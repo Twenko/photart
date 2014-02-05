@@ -1,4 +1,3 @@
-<h1>Listing maingalls</h1>
 
 <table>
   <tr>
@@ -7,8 +6,11 @@
     <th></th>
     <th></th>
     <th></th>
+    <th></th>
   </tr>
-
+<tr>
+  <td><h1>Catégories</h1></td>
+</tr>
 <% @maingalls.each do |maingall| %>
   <tr>
     <td><%= maingall.name %></td>
@@ -16,8 +18,12 @@
     <td><%= link_to 'Show', maingall %></td>
     <td><%= link_to 'Edit', edit_maingall_path(maingall) %></td>
     <td><%= link_to 'Destroy', maingall, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Ajouter une galerie', new_gallery_path(:maingall => maingall.id)%></td>
   </tr>
 <% end %>
+<tr>
+  <td><h1>Galeries seules</h1></td>
+</tr>
 <% @single_gal.each do |gallery| %>
   <tr>
 	<td><%= gallery.name %></td>
@@ -25,10 +31,12 @@
     <td><%= link_to 'Show', gallery %></td>
     <td><%= link_to 'Edit', edit_gallery_path(gallery) %></td>
     <td><%= link_to 'Destroy', gallery, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Nouvelle Photo', new_picture_path(:gallery => gallery.id)%></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Maingall', new_maingall_path %>
+<%= link_to 'Nouvelle catégorie', new_maingall_path %><br />
+<%= link_to 'Créer une galerie seule', new_gallery_path %>

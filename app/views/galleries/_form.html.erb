@@ -18,12 +18,13 @@
   </div>
   <div class="field">
     <%= f.label :picture_id %><br />
-    <%= f.number_field :picture_id %>
+    <% pict = Picture.find(:all, :conditions => ["activate = ? AND gallery_id = ?", true, @gallery.id]) %>
+    <%= f.select :picture_id, options_for_select([["<None>" , 0]] + pict) %>
   </div>
   <div class="field">
     <%= f.label :maingall_id %><br />
     <% maingalls = Maingall.find(:all, :conditions => ["activate = ?", true]).map{ |main| ["#{main.id} Hu", main.id] } %>
-    <%= f.select :maingall_id, options_for_select([["<None>" , 0]] + maingalls) %>
+    <%= f.select :maingall_id, options_for_select([["<None>" , 0]] + maingalls, :selected => params[:maingall]) %>
   </div>
   <div class="field">
     <%= f.label :description %><br />

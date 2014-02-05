@@ -75,6 +75,9 @@ class GalleriesController < ApplicationController
   def destroy
     @gallery = Gallery.find(params[:id])
     @gallery.update_attributes(:activate => false)
+    @gallery.pictures.each do |pics|
+      pics.update_attributes(:activate => false)
+    end
 
     respond_to do |format|
       format.html { redirect_to galleries_url }

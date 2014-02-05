@@ -5,7 +5,8 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   attr_accessor :login
   attr_accessible :username, :email, :password, :password_confirmation, :remember_me, :login
-  has_many :pictures
+  #has_many :pictures
+  has_many :posts
 
   def self.find_first_by_auth_conditions(warden_conditions)
       conditions = warden_conditions.dup

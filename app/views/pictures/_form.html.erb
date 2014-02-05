@@ -13,7 +13,8 @@
 
   <div class="field">
     <%= f.label :gallery_id %><br />
-    <%= f.number_field :gallery_id %>
+    <% gallery = Gallery.find(:all, :conditions => ["activate = ?", true]).map{ |main| ["#{main.id} Hi", main.id] } %>
+    <%= f.select :gallery_id, options_for_select(gallery, :selected => params[:gallery]) %>
   </div>
   <div class="field">
     <%= f.label :name %><br />

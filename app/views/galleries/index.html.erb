@@ -9,6 +9,7 @@
     <th></th>
     <th></th>
     <th></th>
+    <th></th>
   </tr>
 
 <% @galleries.each do |gallery| %>
@@ -20,6 +21,7 @@
     <td><%= link_to 'Show', gallery %></td>
     <td><%= link_to 'Edit', edit_gallery_path(gallery) %></td>
     <td><%= link_to 'Destroy', gallery, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Nouvelle Photo', new_picture_path(:gallery => gallery.id)%></td>
   </tr>
 <% end %>
 </table>

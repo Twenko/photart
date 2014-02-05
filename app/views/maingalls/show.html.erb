@@ -10,6 +10,21 @@
   <%= @maingall.description %>
 </p>
 
+<p>
+  <b>Galeries:</b>
+  <table>
+  	<tr>
+  		<th>Nom</th>
+  		<th>Description</th>
+  	</tr>
+  	<% @maingall.galleries.each do |gallery| %>
+  	<tr>
+  		<td><%= gallery.name %></td>
+  		<td><%= gallery.description %></td>
+  	</tr>
+  	<% end %>
+  </table>
+</p>
 
 <%= link_to 'Edit', edit_maingall_path(@maingall) %> |
 <%= link_to 'Back', maingalls_path %>

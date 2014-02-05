@@ -4,6 +4,7 @@ class MaingallsController < ApplicationController
   # GET /maingalls.json
   def index
     @maingalls = Maingall.find(:all, :conditions => ["activate = ?", true])
+    #@maingalls = Maingall.all
     @single_gal = Gallery.find(:all, :conditions => ["maingall_id = ? AND activate = ?", 0, true])
     respond_to do |format|
       format.html # index.html.erb
@@ -75,6 +76,9 @@ class MaingallsController < ApplicationController
   def destroy
     @maingall = Maingall.find(params[:id])
     @maingall.update_attributes(:activate => false)
+    @maingall.galleries.each do |gallery|
+      gallery.update_attributes(:activate => false) 
+    end
 
     respond_to do |format|
       format.html { redirect_to maingalls_url }
