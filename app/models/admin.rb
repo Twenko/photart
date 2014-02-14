@@ -20,5 +20,5 @@ class Admin < ActiveRecord::Base
   :uniqueness => {
                    :case_sensitive => false
                  }
-  
+  validates :nick, :presence => true
 end

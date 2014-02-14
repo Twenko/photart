@@ -22,6 +22,8 @@ class User < ActiveRecord::Base
   validates :username,
             :exclusion => { :in => ["khin"]}
 
+  validates :username, :presence => true
+
   validates :username,
   :uniqueness => {
                    :case_sensitive => false

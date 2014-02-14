@@ -77,7 +77,11 @@ class MaingallsController < ApplicationController
     @maingall = Maingall.find(params[:id])
     @maingall.update_attributes(:activate => false)
     @maingall.galleries.each do |gallery|
-      gallery.update_attributes(:activate => false) 
+      if params[:des].to_i == 1
+        gallery.update_attributes(:activate => false)
+      else
+        gallery.update_attributes(:maingall_id => 0)
+      end
     end
 
     respond_to do |format|
@@ -85,4 +89,5 @@ class MaingallsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
 end

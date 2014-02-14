@@ -7,6 +7,7 @@
     <th></th>
     <th></th>
     <th></th>
+    <th></th>
   </tr>
 <tr>
   <td><h1>Catégories</h1></td>
@@ -17,7 +18,8 @@
     <td><%= maingall.description %></td>
     <td><%= link_to 'Show', maingall %></td>
     <td><%= link_to 'Edit', edit_maingall_path(maingall) %></td>
-    <td><%= link_to 'Destroy', maingall, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Destroy all', maingall_path(:id => maingall.id, :des => 1), :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Destroy only main', maingall_path(:id => maingall.id, :des => 2), :confirm => 'Are you sure?', :method => :delete %></td>
     <td><%= link_to 'Ajouter une galerie', new_gallery_path(:maingall => maingall.id)%></td>
   </tr>
 <% end %>

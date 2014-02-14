@@ -47,6 +47,9 @@ class PostsController < ApplicationController
     else
       if @post.adorus
         if user_signed_in?
+          #try to do something with time of post
+          #e.g. if timestamp + 300 secs (5 mins) < current_time => refuse edit
+          #=> implement function in view (in edit action, it's for in case of hack)
           redirect_to root_path
         end
       else
@@ -63,7 +66,7 @@ class PostsController < ApplicationController
   # POST /posts.json
   def create
     @post = Post.new(params[:post])
-    #params[:poster_id] = @utili.id
+    #params[:poster_id] = @utili.id => wrong way of doing
     @post.update_attribute(:poster_id, @utili.id)
     @post.update_attribute(:adorus, admin_signed_in?)
 

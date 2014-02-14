@@ -14,5 +14,5 @@ Connecté! |
 <br /><br />
 
 <% if admin_signed_in? %>
-<%= link_to 'Admin List', :controller => :admin, :action => :list %>
+<%= link_to 'Admin List', admin_list_path %>
 <% end %>

@@ -45,9 +45,9 @@ Photart::Application.routes.draw do
   #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
   # This route can be invoked with purchase_url(:id => product.id)
 
-  get 'adminco' => 'portal#admin'
+  get 'adminco' => 'portal#admin', :as => "admin_panel"
   
-  get 'admins/list' => 'admin#list'
+  get 'admins/list' => 'admin#list', :as => "admin_list"
   get 'admins/profil' => 'admin#show', :as => 'adminprofil'
 
   get 'users/list' => 'user#list'

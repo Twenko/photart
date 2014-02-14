@@ -1,3 +1,5 @@
+<%= render '/articles/index'%>
+
 Id en cours d'utilisation: <%= @utili.email rescue "Bloop" %> |
 <% if (user_signed_in?)||(admin_signed_in?) %>
 Connecté! | 
@@ -14,5 +16,5 @@ Connecté! |
 
 <br /><br />
 <% if admin_signed_in? %>
-  <%= link_to 'Administration', :controller => :portal, :action => :admin %>
+  <%= link_to 'Administration', admin_panel_path %>
 <% end %>
