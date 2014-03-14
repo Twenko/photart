@@ -1,12 +1,12 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>Context:</b>
+  <b>Contenu:</b>
   <%= @post.context %>
 </p>
 
 <p>
-  <b>Poster:</b>
+  <b>ID Utilisateur:</b>
   <%= @post.poster_id %>
 </p>
 
@@ -15,5 +15,5 @@
   <%= @post.adorus %>
 </p>
 
-<%= link_to 'Edit', edit_post_path(@post) %> |
-<%= link_to 'Back', posts_path %>
+<%= link_to 'Editer', edit_post_path(@post) %> |
+<%= link_to 'Retour', posts_path %>

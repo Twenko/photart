@@ -1,17 +1,21 @@
 class PostsController < ApplicationController
   #skip_before_filter :index, :show
-  before_filter :check_if_admin, :except => [:index]
+  before_filter :check_if_admin
 
   # GET /posts
   # GET /posts.json
   def index
     #@posts = Post.all
 #    @posts = Post.order("created_at").page(params[:page]).per(10)
-    @posts = Post.find(:all, :conditions => ["activate = ?", true], :order => "created_at")
-    @posts = Kaminari.paginate_array(@posts).page(params[:page]).per(10)
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render :json => @posts }
+    if admin_signed_in?
+      @posts = Post.find(:all, :conditions => ["activate = ?", true], :order => "created_at")
+      @posts = Kaminari.paginate_array(@posts).page(params[:page]).per(10)
+      respond_to do |format|
+        format.html # index.html.erb
+        format.json { render :json => @posts }
+      end
+    else
+      raise 'Please sign in!'
     end
   end
 
@@ -30,6 +34,15 @@ class PostsController < ApplicationController
   # GET /posts/new.json
   def new
     @post = Post.new
+    if Article.find(:first, :conditions => ["id = ?", params[:article]])
+    iddd = params[:article]
+    @post.update_attribute(:article_id, iddd)
+    @post.update_attribute(:poster_id, @utili.id)
+    @post.update_attribute(:adorus, admin_signed_in?)
+    else
+      raise 'ID non valide!'
+    end
+    
     respond_to do |format|
       format.html # new.html.erb
       format.json { render :json => @post }
@@ -40,35 +53,35 @@ class PostsController < ApplicationController
   def edit
     
     @post = Post.find(params[:id])
+
+    unless current_admin
+      if Time.now.to_i > (@post.created_at + 5.minutes).to_i
+        raise 'Edition impossible au-dela de 5 minutes'
+      end
+    end
+    
     
     if @post.poster_id != @utili.id
       #render :action => :index
       redirect_to root_path
-    else
-      if @post.adorus
-        if user_signed_in?
-          #try to do something with time of post
-          #e.g. if timestamp + 300 secs (5 mins) < current_time => refuse edit
-          #=> implement function in view (in edit action, it's for in case of hack)
-          redirect_to root_path
-        end
-      else
-        if !(user_signed_in? || admin_signed_in?)
-          redirect_to root_path
-        end
-      end
+    end
+    if !(user_signed_in? || admin_signed_in?)
+        redirect_to root_path
     end
     
     @editoration = 1
   end
-
   # POST /posts
+
   # POST /posts.json
   def create
     @post = Post.new(params[:post])
     #params[:poster_id] = @utili.id => wrong way of doing
-    @post.update_attribute(:poster_id, @utili.id)
-    @post.update_attribute(:adorus, admin_signed_in?)
+#    @post.update_attribute(:poster_id, @utili.id)
+#    @post.update_attribute(:adorus, admin_signed_in?)
+    #iddd = params[:article]
+    #idaag = Article.find(iddd).id
+#    @post.update_attribute(:article_id, iddd)
 
     respond_to do |format|
       if @post.save

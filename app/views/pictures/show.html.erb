@@ -1,22 +1,27 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>Path:</b>
+  <b>URL locale</b>
   <%= @picture.path %>
 </p>
 
 <p>
-  <b>User:</b>
-  <%= @picture.user_id %>
+  <b>Auteur(User)</b>
+  <%= @picture.user.username rescue "" %>
 </p>
 
 <p>
-  <b>Gallery:</b>
+  <b>Auteur(Admin)</b>
+  <%= picture.admin.nick rescue "" %>
+</p>
+
+<p>
+  <b>Galerie:</b>
   <%= @picture.gallery_id %>
 </p>
 
 <p>
-  <b>Name:</b>
+  <b>Titre:</b>
   <%= @picture.name %>
 </p>
 
@@ -26,10 +31,9 @@
 </p>
 
 <p>
-  <b>Size:</b>
+  <b>Taille:</b>
   <%= @picture.size %>
 </p>
 
 
-<%= link_to 'Edit', edit_picture_path(@picture) %> |
-<%= link_to 'Back', pictures_path %>
+<%= link_to 'Retour', pictures_path %>

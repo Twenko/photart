@@ -1,13 +1,13 @@
 <%= render '/articles/index'%>
 
-Id en cours d'utilisation: <%= @utili.email rescue "Bloop" %> |
+Id en cours d'utilisation: <%= @utili.email rescue "N/A" %> |
 <% if (user_signed_in?)||(admin_signed_in?) %>
 Connecté! | 
 	<% if admin_signed_in? %>
-		<%= link_to 'Déconnexion!', destroy_admin_session_path, :method => :delete %>
+		<%= link_to 'Déconnexion', destroy_admin_session_path, :method => :delete %>
 	<% end %>
 	<% if user_signed_in? %>
-		<%= link_to 'Déconnexion!', destroy_user_session_path, :method => :delete %>
+		<%= link_to 'Déconnexion', destroy_user_session_path, :method => :delete %>
 	<% end %>
 <% else %>
 	<%= link_to 'Inscription', new_user_registration_path %> | 

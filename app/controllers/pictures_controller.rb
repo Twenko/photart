@@ -1,5 +1,5 @@
 class PicturesController < ApplicationController
-  before_filter :authenticate_admin!, :except => [:index, :show]
+  before_filter :authenticate_admin!#, :except => [:index, :show]
   # GET /pictures
   # GET /pictures.json
   def index

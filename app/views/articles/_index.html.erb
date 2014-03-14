@@ -1,14 +1,12 @@
-<h1>Listing articles</h1><br />
+<h1>Articles postés</h1><br />
 
 <table>
   <tr>
-    <th>Content</th>
-    <th>Poster</th>
-    <th>Title</th>
-    <th>Gallery</th>
-    <th>Picture</th>
-    <th></th>
-    <th></th>
+    <th>Titre</th>
+    <th>Auteur</th>
+    <th>Contenu</th>
+    <th>Galerie</th>
+    <th>Photo</th>
     <th></th>
   </tr>
 
@@ -20,10 +18,15 @@
     <td><%= article.title %></td>
     <td><%= article.gallery_id %></td>
     <td><%= article.picture_id %></td>
-    <td><%= link_to 'Show', article %></td>
+    <td><%= link_to 'Permalien', article %></td>
   </tr>
   <% end %>
 <% end %>
 </table>
 
+<br />
+
+<div>
+	<%= paginate @articles %>
+</div>
 <br />

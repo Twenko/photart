@@ -4,7 +4,7 @@
 
 	<% if admin_signed_in? %>
 Connecté! | 
-		<%= link_to 'Déconnexion!', destroy_admin_session_path, :method => :delete %><br />
+		<%= link_to 'Déconnexion', destroy_admin_session_path, :method => :delete %><br />
 	<% else %>
 		<%= link_to 'Connexion', new_admin_session_path %><br />
 	<% end %>
@@ -14,5 +14,6 @@ Connecté! |
 <br /><br />
 
 <% if admin_signed_in? %>
-<%= link_to 'Admin List', admin_list_path %>
+<%= link_to 'Admin List', admin_list_path %><br />
 <% end %>
+<%= link_to 'Retour', :back %>

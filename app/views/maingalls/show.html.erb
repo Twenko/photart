@@ -26,5 +26,8 @@
   </table>
 </p>
 
-<%= link_to 'Edit', edit_maingall_path(@maingall) %> |
-<%= link_to 'Back', maingalls_path %>
+<br />
+<% if admin_signed_in? %>
+<%= link_to 'Editer', edit_maingall_path(@maingall) %> <br />
+<% end %>
+<%= link_to 'Retour', maingalls_path %>

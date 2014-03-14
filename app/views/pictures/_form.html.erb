@@ -12,20 +12,20 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :gallery_id %><br />
+    Galerie<br />
     <% gallery = Gallery.find(:all, :conditions => ["activate = ?", true]).map{ |main| ["#{main.id} Hi", main.id] } %>
     <%= f.select :gallery_id, options_for_select(gallery, :selected => params[:gallery]) %>
   </div>
   <div class="field">
-    <%= f.label :name %><br />
+    Nom<br />
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :description %><br />
+    Description<br />
     <%= f.text_area :description %>
   </div>
   <div class="field">
-    <%= f.label :size %><br />
+    Taille<br />
     <%= f.text_field :size %>
   </div>
   <p>
@@ -37,7 +37,7 @@
     <%= f.text_field :remote_image_url %>
   </p>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Valider" %>
   </div>
 <% end %>
 

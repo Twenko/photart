@@ -10,11 +10,23 @@
       </ul>
     </div>
   <% end %>
+  
+  <% if (user_signed_in? || admin_signed_in?) %>
+  
   <div class="field">
     Contenu:<br />
     <%= f.text_area :context %>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="field">
+  	<%= params[:article].to_s %>
+  	<!--<%= f.hidden_field :article_id, :value => params[:article] %> -->
   </div>
+  <div class="actions">
+    <%= f.submit "Valider" %>
+  </div>
+  
+  <% else %>
+  Vous n'êtes pas connectés!
+  <%end%>
+  
 <% end %>

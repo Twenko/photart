@@ -1,17 +1,12 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>Name:</b>
+  <b>Nom:</b>
   <%= @gallery.name %>
 </p>
 
 <p>
-  <b>Picture:</b>
-  <%= @gallery.picture_id %>
-</p>
-
-<p>
-  <b>Maingall:</b>
+  <b>Catégorie:</b>
   <%= @gallery.maingall_id %>
 </p>
 
@@ -19,9 +14,16 @@
   <b>Description:</b>
   <%= @gallery.description %>
 </p>
+
+<p>
+  <b>Couverture:</b>
+  <%= image_tag Picture.find(@gallery.picture_id).image_url(:thumb) rescue nil %>
+</p>
+
 <%= form_for Picture.new, :multipart => true do |f| %>
 <%= f.hidden_field :gallery_id, :value => @gallery.id %>
 <%= f.file_field :image, "data-url" => "/pictures", :multiple => "", :name => "picture[image]", :id => "fileupload" %>
 <% end %>
-<%= link_to 'Edit', edit_gallery_path(@gallery) %> |
-<%= link_to 'Back', galleries_path %>
+<br />
+<%= link_to 'Edition', edit_gallery_path(@gallery) %> |
+<%= link_to 'Retour', galleries_path %>

@@ -13,25 +13,25 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %><br />
+    Nom<br />
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :picture_id %><br />
-    <% pict = Picture.find(:all, :conditions => ["activate = ? AND gallery_id = ?", true, @gallery.id]) %>
+    Photo de couverture<br />
+    <% pict = Picture.find(:all, :conditions => ["activate = ? AND gallery_id = ?", true, @gallery.id]).map{ |picm| ["#{picm.id}", picm.id]} %>
     <%= f.select :picture_id, options_for_select([["<None>" , 0]] + pict) %>
   </div>
   <div class="field">
-    <%= f.label :maingall_id %><br />
+    Catégorie<br />
     <% maingalls = Maingall.find(:all, :conditions => ["activate = ?", true]).map{ |main| ["#{main.id} Hu", main.id] } %>
     <%= f.select :maingall_id, options_for_select([["<None>" , 0]] + maingalls, :selected => params[:maingall]) %>
   </div>
   <div class="field">
-    <%= f.label :description %><br />
+    Description<br />
     <%= f.text_area :description %>
   </div>
   
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Valider" %>
   </div>
 <% end %>

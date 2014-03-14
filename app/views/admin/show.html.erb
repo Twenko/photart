@@ -1,17 +1,23 @@
 <h2>Votre profil</h2>
 
 <div>
-        Pseudo<br />
+        <strong>Pseudo</strong><br />
         <%= current_admin.nick %>
 </div>
-
+<br />
 <div>
-        Nom réel<br />
+        <strong>Nom réel</strong><br />
+        <% if current_admin.name!="" %>
         <%= current_admin.name %>
+        <% else %>
+        "Non entré"
+        <% end %>
 </div>
-
+<br />
 <div>
-        E-mail<br />
+        <strong>Adresse e-mail</strong><br />
         <%= current_admin.email %>
 </div>
+<br />
 
+<%= link_to "Retour", :back %>

@@ -7,7 +7,7 @@
 
 <div>
 	Nom réel<br />
-	<%= @user.name rescue current_user.name %>
+	<%= @user.name rescue current_user.name rescue "" %>
 </div>
 
 <% if user_signed_in? %>

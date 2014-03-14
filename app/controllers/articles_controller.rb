@@ -18,6 +18,8 @@ class ArticlesController < ApplicationController
   # GET /articles/1.json
   def show
     @article = Article.find(params[:id])
+    @posts = @article.posts.all
+    @posts = Kaminari.paginate_array(@posts).page(params[:page]).per(15)
 
     respond_to do |format|
       format.html # show.html.erb

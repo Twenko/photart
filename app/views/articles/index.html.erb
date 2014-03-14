@@ -1,33 +1,39 @@
-<h1>Listing articlesss</h1><br />
+<h1>Articles <% if admin_signed_in? %>(administration)<% end %></h1><br />
 
 <table>
   <tr>
-    <th>Content</th>
-    <th>Poster</th>
-    <th>Title</th>
-    <th>Gallery</th>
-    <th>Picture</th>
+    <th>Titre</th>
+    <th>Auteur</th>
+    <th>Galerie</th>
+    <th>Photo</th>
     <th></th>
-    <th></th>
-    <th></th>
+    <% if admin_signed_in? %>
+    	<th></th>
+    	<th></th>
+    <% end %>
   </tr>
 
 <% @articles.each do |article| %>
   <% if article.activate %>
   <tr>
-    <td><%= article.content %></td>
-    <td><%= Admin.find(article.poster_id).nick %></td>
     <td><%= article.title %></td>
+    <td><%= Admin.find(article.poster_id).nick %></td>
     <td><%= article.gallery_id %></td>
     <td><%= article.picture_id %></td>
-    <td><%= link_to 'Show', article %></td>
-    <td><%= link_to 'Edit', edit_article_path(article) %></td>
-    <td><%= link_to 'Destroy', article, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Permalien', article %></td>
+    <% if admin_signed_in? %>
+    <td><%= link_to 'Editer', edit_article_path(article) %></td>
+    <td><%= link_to 'Supprimer', article, :confirm => 'Are you sure?', :method => :delete %></td>
+    <% end %>
   </tr>
   <% end %>
 <% end %>
 </table>
-
+<div>
+	<%= paginate @articles %>
+</div>
 <br />
-
-<%= link_to 'New Article', new_article_path %>
+<% if admin_signed_in? %>
+<%= link_to 'Nouvel article', new_article_path %><br />
+<% end %>
+<%= link_to 'Retour', :back %>

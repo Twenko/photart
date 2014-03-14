@@ -1,14 +1,14 @@
-<h1>Listing pictures</h1>
+<h1>Photos</h1>
 
 <table>
   <tr>
-    <th>User</th>
-    <th>Admin</th>
-    <th>Gallery</th>
-    <th>Name</th>
+    <th>Auteur(user)</th>
+    <th>Auteur(admin)</th>
+    <th>Galerie</th>
+    <th>Titre</th>
     <th>Description</th>
-    <th>Size</th>
-    <th>Pic</th>
+    <th>Taille</th>
+    <th>Photo</th>
     <th></th>
     <th></th>
     <th></th>
@@ -17,15 +17,15 @@
 <% @pictures.each do |picture| %>
   <% if picture.image? %>
   <tr>
-    <td><%= picture.user.username rescue ""%></td>
-    <td><%= picture.admin.nick rescue ""%></td>
+    <td><%= picture.user.username rescue "" %></td>
+    <td><%= picture.admin.nick rescue "" %></td>
     <td><%= picture.gallery_id %></td>
     <td><%= picture.name %></td>
     <td><%= picture.description %></td>
     <td><%= image_tag picture.image_url(:thumb) %></td>
-    <td><%= link_to 'Show', picture %></td>
-    <td><%= link_to 'Edit', edit_picture_path(picture) %></td>
-    <td><%= link_to 'Destroy', picture, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Voir', picture %></td>
+    <td><%= link_to 'Editer', edit_picture_path(picture) %></td>
+    <td><%= link_to 'Supprimer', picture, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
   <% end %>
 <% end %>
@@ -33,4 +33,5 @@
 
 <br />
 
-<%= link_to 'New Picture', new_picture_path %>
+<%= link_to 'Nouvelle photo', new_picture_path %><br />
+<%= link_to 'Retour', :back %>
