@@ -52,7 +52,7 @@ Photart::Application.routes.draw do
 
   get 'users/list' => 'user#list'
   get 'users/:id' => 'user#show', :as => 'user'
-  get 'users/profil' => 'user#show', :as => 'userprofil'
+  get 'user/profil' => 'user#usprofil', :as => 'userprofil'
 
   # Sample resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products

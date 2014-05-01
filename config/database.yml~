@@ -8,7 +8,7 @@ development:
   encoding: utf8
   database: chatonreiller_dev
   username: root
-  password: pass
+  password: Kerein
   host: localhost
   port: 3000
 
@@ -20,7 +20,7 @@ test:
   encoding: utf8
   database: chatonreiller_test
   username: root
-  password: pass
+  password: Kerein
   host: localhost
   port: 3000
 
@@ -29,6 +29,6 @@ production:
   encoding: utf8
   database: chatonreiller_prod
   username: root
-  password: pass
+  password: Kerein
   host: localhost
   post: 3000

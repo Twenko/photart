@@ -11,4 +11,8 @@ class UserController < ApplicationController
     @user = User.find_by_id(params[:id])
   end
 
+  def usprofil
+    
+  end
+
 end
