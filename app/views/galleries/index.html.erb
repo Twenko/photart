@@ -1,5 +1,5 @@
 <h1>Galeries (toutes)</h1>
-
+<br />
 <table>
   <tr>
     <th>Nom</th>
@@ -8,9 +8,9 @@
     <th>Description</th>
     <th></th>
     <% if admin_signed_in? %>
-    <th></th>
-    <th></th>
-    <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
     <% end %>
   </tr>
 
@@ -22,9 +22,9 @@
     <td><%= gallery.description %></td>
     <td><%= link_to 'Voir la galerie', gallery %></td>
     <% if admin_signed_in? %>
-    <td><%= link_to 'Edition', edit_gallery_path(gallery) %></td>
-    <td><%= link_to 'Supprimer', gallery, :confirm => 'Êtes-vous sûr?', :method => :delete %></td>
-    <td><%= link_to 'Nouvelle Photo', new_picture_path(:gallery => gallery.id)%></td>
+      <td><%= link_to 'Edition', edit_gallery_path(gallery) %></td>
+      <td><%= link_to 'Supprimer', gallery, :confirm => 'Êtes-vous sûr?', :method => :delete %></td>
+      <td><%= link_to 'Nouvelle Photo', new_picture_path(:gallery => gallery.id)%></td>
     <% end %>
   </tr>
 <% end %>
@@ -32,6 +32,6 @@
 
 <br />
 <% if admin_signed_in? %>
-<%= link_to 'Nouvelle galerie', new_gallery_path %><br />
+  <%= link_to 'Nouvelle galerie', new_gallery_path %><br />
 <% end%>
 <%= link_to "Retour", :back %>

@@ -1,4 +1,12 @@
-<h2>Votre profil</h2>
+<% if user_signed_in? %>
+  <% if current_user.id != (@user.id rescue current_user.id) %>
+    <h2>Profil de <%= @user.username %></h2>
+  <% else %>
+    <h2>Votre profil</h2>
+  <% end %>
+<% else %>
+  <h2>Profil de <%= @user.username %></h2>
+<% end %>
 
 <div>
 	Pseudo<br />

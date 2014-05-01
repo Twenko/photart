@@ -19,12 +19,17 @@
   <div class="field">
     Photo de couverture<br />
     <% pict = Picture.find(:all, :conditions => ["activate = ? AND gallery_id = ?", true, @gallery.id]).map{ |picm| ["#{picm.id}", picm.id]} %>
-    <%= f.select :picture_id, options_for_select([["<None>" , 0]] + pict) %>
+    <%= f.select :picture_id, options_for_select([["<None>" , 0]] + pict, :selected => @gallery.picture_id) %>
+    <%= @gallery.picture_id %>
   </div>
   <div class="field">
     Catégorie<br />
     <% maingalls = Maingall.find(:all, :conditions => ["activate = ?", true]).map{ |main| ["#{main.id} Hu", main.id] } %>
-    <%= f.select :maingall_id, options_for_select([["<None>" , 0]] + maingalls, :selected => params[:maingall]) %>
+    <% if @gallery.maingall_id %>
+      <%= f.select :maingall_id, options_for_select([["<None>" , 0]] + maingalls, :selected => @gallery.maingall_id) %>
+    <% else %>
+      <%= f.select :maingall_id, options_for_select([["<None>" , 0]] + maingalls, :selected => params[:maingall]) %>
+	<% end %>
   </div>
   <div class="field">
     Description<br />

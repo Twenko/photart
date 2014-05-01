@@ -2,7 +2,7 @@
 <html>
 <head>
   <title>Chatonreiller</title>
-  <%= stylesheet_link_tag    "application", "tempor", :media => "all", "data-turbolinks-track" => true %>
+  <%= stylesheet_link_tag    "application", "amagraph", :media => "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "pictures" %>
   <%= csrf_meta_tags %>
@@ -11,33 +11,65 @@
   <div id="header-wrapper">
 	<div id="header">
 		<div id="logo">
-			<h1><a href="#">Chatonreiller</a></h1>
+			<%= link_to image_tag("chatoncrevette.jpg", :alt => "C'pas d'pot si tu peux pas voir", :width => "300px"), root_path %>
 		</div>
 		<div id="menu">
 			<ul>
-			  <li class="current_page_item"><%= link_to 'Accueil', root_path %></li>
-			  <li><%= link_to "Galeries", maingalls_path %></li>
+			  <% if controller_name == 'portal' %>
+			  	<li class="activemenu">
+			  <% else%>
+			  	<li>
+			  <% end %>
+			  	<%= link_to 'Accueil', root_path %></li>
+			  <% if (controller_name == 'maingalls')||(controller_name == 'galleries') %>
+			  	<li class="activemenu">
+			  <% else%>
+			  	<li>
+			  <% end %>
+			  	<%= link_to "Galeries", maingalls_path %></li>
 	<% unless (user_signed_in? || admin_signed_in?) %>
-		<li><%= link_to "Inscription", new_user_registration_path %></li>
-		<li><%= link_to "Connexion", new_user_session_path %></li>
+		<% if controller_name == 'registrations' %>
+			<li class="activemenu">
+		<% else%>
+			<li>
+		<% end %>
+		<%= link_to "Inscription", new_user_registration_path %></li>
+		
+		<% if controller_name == 'sessions' %>
+		  	<li class="activemenu">
+		<% else%>
+		  	<li>
+		<% end %>
+		<%= link_to "Connexion", new_user_session_path %></li>
 	<% end %>
 	<% if user_signed_in? %>
-		<li><%= link_to "Mon Compte", userprofil_path %></li>
+		<% if controller_name == 'user' %>
+		  	<li class="activemenu">
+		<% else%>
+		  	<li>
+		<% end %>
+		<%= link_to "Mon Compte", userprofil_path %></li>
 		<li><%= link_to 'Déconnexion', destroy_user_session_path, :method => :delete %></li>
 	<% end %>
 	<% if admin_signed_in? %>
-		<li><%= link_to "Mon Compte(Admin)", adminprofil_path %></li>
+		<% if controller_name == 'admin' %>
+			<li class="activemenu">
+		<% else%>
+			<li>
+		<% end %>
+		<%= link_to "Mon Compte(Admin)", adminprofil_path %></li>
 		<li><%= link_to 'Déconnexion', destroy_admin_session_path, :method => :delete %></li>
 	<% end %>
 			</ul>
 		</div>
 	</div>
   </div>
-
+<div style="clear:both;"> </div>
   <div id="page-wrapper">
 	<div id="page">
 		<div id="content">
 			<div>
+
 	<%= yield %>
 			</div>
 		</div>

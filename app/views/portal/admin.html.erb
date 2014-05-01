@@ -1,5 +1,5 @@
 <% if user_signed_in? %>
-
+  Je ne suis ni une théière, ni un chaton. Je suis une crevette. Et rien d'autre.
 <%else%>
 
 	<% if admin_signed_in? %>
@@ -14,6 +14,7 @@ Connecté! |
 <br /><br />
 
 <% if admin_signed_in? %>
-<%= link_to 'Admin List', admin_list_path %><br />
+  <%= link_to 'Commentaires', posts_path %><br />
+  <%= link_to 'Liste des admins', admin_list_path %><br />
 <% end %>
 <%= link_to 'Retour', :back %>

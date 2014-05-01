@@ -1,47 +1,64 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Titre:</b>
-  <%= @article.title %>
-</p>
+	<div id="cadre">
+		<div id="gauchehaut">
+			<div id="tl-corner">
+				<img src="/images/tlcorner.jpg" width="100%;"></img>
+			</div>
+		</div>
+		<div id="milieuhaut">
+			<h1><%= @article.title %></h1><br />
+			<span id="txtarticle"><%= @article.content %></span><br />
+			<span id="finarti">Le <%= @article.created_at.strftime("%d-%m-%y") %> à <%= @article.created_at.strftime("%H:%M:%S")%></span> par <%= Admin.find(@article.poster_id).nick %> -
+			<%= @article.posts.count %> Commentaire(s)
+			<span style="float:right"></span>
+		</div>
+		<div id="droitehaut">
+			<div id="tr-corner">
+				<img src="/images/trcorner.jpg" width="100%;"></img>
+			</div>
+		</div>
+		<div style="clear:both"> </div>
+		<div id="gauchebas">
+			<div id="bl-corner">
+				<img src="/images/blcorner.jpg" width="100%;"></img>
+			</div>
+		</div>
+		<div id="milieubas"> </div>
+		<div id="droitebas">
+			<div id="br-corner">
+				<img src="/images/brcorner.jpg" width="100%;"></img>
+			</div>
+		</div>
+	</div>
 
-<p>
-  <b>Auteur:</b>
-  <%= @article.poster_id %>
-</p>
-
-<p>
-  <b>Contenu:</b>
-  <%= @article.content %>
-</p>
-
-<p>
-  <b>Galerie:</b>
-  <%= @article.gallery_id %>
-</p>
-
-<p>
-  <b>Photo:</b>
-  <%= @article.picture_id %>
-</p>
-
+<div id="commentaires">
 <% @posts.each do |post| %>
   <% if post.activate %>
     <p>
-	  <i>Posté le : <%= post.created_at.strftime("%d-%m-%y") %> à <%= post.created_at.strftime("%H:%M:%S")%></i><br />
-	  <u>Auteur</u> : <b><% if post.adorus %>
-						<%= Admin.find(post.poster_id).nick %>
+	  <u>Auteur</u> : <% if post.adorus %>
+						<b><%= Admin.find(post.poster_id).nick %></b> (Administrateur)
 					<% else %>
-						<%= User.find(post.poster_id).username %>
-					<% end %></b><br />
-	  <blockquote><%= post.context %></blockquote>
+						<b><%= User.find(post.poster_id).username %></b>
+					<% end %><br />
+	</p>
+	<blockquote id="comms"><%= post.context %></blockquote>
+	<p>
+	  <i>Posté le : <%= post.created_at.strftime("%d-%m-%y") %> à <%= post.created_at.strftime("%H:%M:%S")%></i><br />
+	  <% if Time.now.to_i < (post.created_at + 5.minutes).to_i || current_admin %>
+	  	<%= link_to 'Editer', edit_post_path(post) %>
+	  <% end %>
+	  <br />
     </p>
+    <hr />
   <% end %>
 <% end %>
 <br />
 
 <div>
 	<%= paginate @posts %>
+</div>
+
 </div>
 <br />
 <% if admin_signed_in? %>

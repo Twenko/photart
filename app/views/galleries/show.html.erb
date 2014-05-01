@@ -7,23 +7,32 @@
 
 <p>
   <b>Catégorie:</b>
-  <%= @gallery.maingall_id %>
+  <% if @gallery.maingall_id==0 %>
+  	Aucune
+  <% else %>
+    <%= @gallery.maingall_id %>
+  <% end %>
 </p>
 
 <p>
-  <b>Description:</b>
+  <b>Description:</b><br />
   <%= @gallery.description %>
 </p>
 
 <p>
-  <b>Couverture:</b>
+  <b>Couverture:</b><br />
   <%= image_tag Picture.find(@gallery.picture_id).image_url(:thumb) rescue nil %>
 </p>
-
-<%= form_for Picture.new, :multipart => true do |f| %>
-<%= f.hidden_field :gallery_id, :value => @gallery.id %>
-<%= f.file_field :image, "data-url" => "/pictures", :multiple => "", :name => "picture[image]", :id => "fileupload" %>
+-----------------(Ceci n'est pas un trait)-----------------
+<br /><br />
+(insérer lightbox ici)
+<br /><br />
+<% if current_admin %>
+  <%= form_for Picture.new, :multipart => true do |f| %>
+	<%= f.hidden_field :gallery_id, :value => @gallery.id %>
+	<%= f.file_field :image, "data-url" => "/pictures", :multiple => "", :name => "picture[image]", :id => "fileupload" %>
+  <% end %>
+  <br />
+  <%= link_to 'Edition', edit_gallery_path(@gallery) %> |
 <% end %>
-<br />
-<%= link_to 'Edition', edit_gallery_path(@gallery) %> |
-<%= link_to 'Retour', galleries_path %>
+<%= link_to 'Retour', maingalls_path %>

@@ -13,6 +13,15 @@ class ApplicationController < ActionController::Base
     end
     locale = @utili.locale rescue locale = nil
   end
+  
+  private
+  
+  def after_sign_out_path_for(admin)
+    root_path
+  end
+  def after_sign_out_path_for(user)
+    root_path
+  end
   #protected
 
   #def configure_permitted_parameters

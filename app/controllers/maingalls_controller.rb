@@ -46,7 +46,7 @@ class MaingallsController < ApplicationController
 
     respond_to do |format|
       if @maingall.save
-        format.html { redirect_to @maingall, :notice => 'Maingall was successfully created.' }
+        format.html { redirect_to maingalls_path, :notice => 'Maingall was successfully created.' }
         format.json { render :json => @maingall, :status => :created, :location => @maingall }
       else
         format.html { render :action => "new" }
@@ -62,7 +62,7 @@ class MaingallsController < ApplicationController
 
     respond_to do |format|
       if @maingall.update_attributes(params[:maingall])
-        format.html { redirect_to @maingall, :notice => 'Maingall was successfully updated.' }
+        format.html { redirect_to maingalls_path, :notice => 'Maingall was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render :action => "edit" }

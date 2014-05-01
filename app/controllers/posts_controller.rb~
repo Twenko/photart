@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   #skip_before_filter :index, :show
-  before_filter :check_if_admin, :except => [:new]
+  before_filter :check_if_admin
   # GET /posts
   # GET /posts.json
   def index
@@ -8,7 +8,7 @@ class PostsController < ApplicationController
 #    @posts = Post.order("created_at").page(params[:page]).per(10)
     if admin_signed_in?
       @posts = Post.find(:all, :conditions => ["activate = ?", true], :order => "created_at")
-      @posts = Kaminari.paginate_array(@posts).page(params[:page]).per(20)
+      @posts = Kaminari.paginate_array(@posts).page(params[:page]).per(10)
       respond_to do |format|
         format.html # index.html.erb
         format.json { render :json => @posts }
@@ -33,14 +33,14 @@ class PostsController < ApplicationController
   # GET /posts/new.json
   def new
     @post = Post.new
-    #if Article.find(:first, :conditions => ["id = ?", params[:article]])
-    #iddd = params[:article]
-    #@post.attributes = {:article_id => iddd}
-    #@post.attributes = {:poster_id => @utili.id}
-    #@post.attributes = {:adorus => admin_signed_in?}
-    #else
-    #  raise 'ID non valide!'
-    #end
+    if Article.find(:first, :conditions => ["id = ?", params[:article]])
+    iddd = params[:article]
+    @post.attributes(:article_id => iddd)
+    @post.attributes(:poster_id => @utili.id)
+    @post.attributes(:adorus => admin_signed_in?)
+    else
+      raise 'ID non valide!'
+    end
     
     respond_to do |format|
       format.html # new.html.erb
@@ -75,8 +75,6 @@ class PostsController < ApplicationController
   # POST /posts.json
   def create
     @post = Post.new(params[:post])
-    @post.update_attribute(:poster_id, @utili.id)
-    @post.update_attribute(:adorus, admin_signed_in?)
     if @post.poster_id==nil
       @post.update_attributes(:activate=>false)
     end
@@ -89,7 +87,7 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       if @post.save
-        format.html { redirect_to Article.find(@post.article_id), :notice => 'Post was successfully created.' }
+        format.html { redirect_to @post, :notice => 'Post was successfully created.' }
         format.json { render :json => @post, :status => :created, :location => @post }
       else
         format.html { render :action => "new" }
@@ -106,7 +104,7 @@ class PostsController < ApplicationController
     
     respond_to do |format|
       if @post.update_attributes(params[:post])
-        format.html { redirect_to Article.find(@post.article_id), :notice => 'Post was successfully updated.' }
+        format.html { redirect_to @post, :notice => 'Post was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render :action => "edit" }

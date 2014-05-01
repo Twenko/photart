@@ -20,10 +20,10 @@
     <td><%= maingall.description %></td>
     <td><%= link_to 'Voir la catégorie', maingall %></td>
     <% if admin_signed_in? %>
-    <td><%= link_to 'Editer', edit_maingall_path(maingall) %></td>
-    <td><%= link_to 'Suppression catégorie + galerie', maingall_path(:id => maingall.id, :des => 1), :confirm => 'Are you sure?', :method => :delete %></td>
-    <td><%= link_to 'Suppression catégorie seule', maingall_path(:id => maingall.id, :des => 2), :confirm => 'Are you sure?', :method => :delete %></td>
-    <td><%= link_to 'Ajouter une galerie', new_gallery_path(:maingall => maingall.id)%></td>
+      <td><%= link_to 'Editer', edit_maingall_path(maingall) %></td>
+      <td><%= link_to 'Suppression catégorie + galerie', maingall_path(:id => maingall.id, :des => 1), :confirm => 'Are you sure?', :method => :delete %></td>
+      <td><%= link_to 'Suppression catégorie seule', maingall_path(:id => maingall.id, :des => 2), :confirm => 'Are you sure?', :method => :delete %></td>
+      <td><%= link_to 'Ajouter une galerie', new_gallery_path(:maingall => maingall.id)%></td>
     <% end %>
   </tr>
 <% end %>
@@ -38,9 +38,9 @@
     <td><%= gallery.description %></td>
     <td><%= link_to 'Voir la galerie', gallery %></td>
     <% if admin_signed_in? %>
-    <td><%= link_to 'Edition', edit_gallery_path(gallery) %></td>
-    <td><%= link_to 'Supprimer', gallery, :confirm => 'Êtes-vous sûr?', :method => :delete %></td>
-    <td><%= link_to 'Nouvelle Photo', new_picture_path(:gallery => gallery.id)%></td>
+      <td><%= link_to 'Edition', edit_gallery_path(gallery) %></td>
+      <td><%= link_to 'Supprimer', gallery, :confirm => 'Êtes-vous sûr?', :method => :delete %></td>
+      <td><%= link_to 'Nouvelle Photo', new_picture_path(:gallery => gallery.id)%></td>
     <% end %>
   </tr>
 <% end %>
@@ -49,8 +49,8 @@
 <br />
 
 <% if admin_signed_in? %>
-<%= link_to 'Nouvelle catégorie', new_maingall_path %><br />
-<%= link_to 'Créer une galerie seule', new_gallery_path %>
+  <%= link_to 'Nouvelle catégorie', new_maingall_path %><br />
+  <%= link_to 'Créer une galerie seule', new_gallery_path %><br />
 <% end %>
 
 <%= link_to "Retour", :back %>	

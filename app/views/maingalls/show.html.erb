@@ -16,11 +16,13 @@
   	<tr>
   		<th>Nom</th>
   		<th>Description</th>
+  		<th></th>
   	</tr>
   	<% @maingall.galleries.each do |gallery| %>
   	<tr>
   		<td><%= gallery.name %></td>
   		<td><%= gallery.description %></td>
+  		<td><%= link_to "Voir la galerie", gallery_path %></td>
   	</tr>
   	<% end %>
   </table>

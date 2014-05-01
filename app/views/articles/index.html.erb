@@ -7,6 +7,7 @@
     <th>Galerie</th>
     <th>Photo</th>
     <th></th>
+    <th></th>
     <% if admin_signed_in? %>
     	<th></th>
     	<th></th>
@@ -20,6 +21,7 @@
     <td><%= Admin.find(article.poster_id).nick %></td>
     <td><%= article.gallery_id %></td>
     <td><%= article.picture_id %></td>
+    <td><%= article.posts.count %> Commentaire(s)</td>
     <td><%= link_to 'Permalien', article %></td>
     <% if admin_signed_in? %>
     <td><%= link_to 'Editer', edit_article_path(article) %></td>

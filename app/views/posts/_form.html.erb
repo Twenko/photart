@@ -17,10 +17,14 @@
     Contenu:<br />
     <%= f.text_area :context %>
   </div>
-  <div class="field">
-  	<%= params[:article].to_s %>
-  	<!--<%= f.hidden_field :article_id, :value => params[:article] %> -->
-  </div>
+  <% unless @post.article_id %>
+    <div>
+	  <%= f.hidden_field :article_id, :value => params[:article] %>
+  	</div>
+  <% end %>
+  <% if (current_admin)&&(@post.article_id) %>
+  	<%= f.hidden_field :article_id, :value => @post.article_id %>
+  <% end %>
   <div class="actions">
     <%= f.submit "Valider" %>
   </div>

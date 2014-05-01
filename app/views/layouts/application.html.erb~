@@ -4,6 +4,7 @@
   <title>Chatonreiller</title>
   <%= stylesheet_link_tag    "application", "tempor", :media => "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "pictures" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
@@ -15,6 +16,11 @@
 		<div id="menu">
 			<ul>
 			  <li class="current_page_item"><%= link_to 'Accueil', root_path %></li>
+			  <li><%= link_to "Galeries", maingalls_path %></li>
+	<% unless (user_signed_in? || admin_signed_in?) %>
+		<li><%= link_to "Inscription", new_user_registration_path %></li>
+		<li><%= link_to "Connexion", new_user_session_path %></li>
+	<% end %>
 	<% if user_signed_in? %>
 		<li><%= link_to "Mon Compte", userprofil_path %></li>
 		<li><%= link_to 'Déconnexion', destroy_user_session_path, :method => :delete %></li>
@@ -32,6 +38,9 @@
 	<div id="page">
 		<div id="content">
 			<div>
+<% if controller_name == 'maingalls' %>
+Hu!
+<% end %>
 	<%= yield %>
 			</div>
 		</div>
