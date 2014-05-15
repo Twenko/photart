@@ -50,7 +50,7 @@ Photart::Application.routes.draw do
   get 'admins/list' => 'admin#list', :as => "admin_list"
   get 'admins/profil' => 'admin#show', :as => 'adminprofil'
 
-  get 'users/list' => 'user#list'
+  get 'users/list' => 'user#list', :as => "user_list"
   get 'users/:id' => 'user#show', :as => 'user'
   get 'user/profil' => 'user#usprofil', :as => 'userprofil'
 
