@@ -72,6 +72,10 @@ body{
 	margin: 0 auto;
 }
 
+#pagecenter{
+	margin-left:35%;
+}
+
 #lefty{
 	width: 19%;
 	left:0%;
@@ -82,12 +86,12 @@ body{
 
 #cadre{
 	/*background:#FF0000;*/
-	width: 50%;
-	margin: 0 auto;
+	width: 80%;
+	/*margin: 0 auto;*/
 	min-height:200px;
-	margin-left:35%;
+	/*margin-left:35%;
 	margin-right:auto;
-	left:40%;
+	left:40%;*/
 	padding-bottom:10px;
 }
 
