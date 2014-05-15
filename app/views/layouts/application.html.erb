@@ -3,18 +3,19 @@
 <head>
   <title>Chatonreiller</title>
   <%= stylesheet_link_tag    "application", "amagraph", :media => "all", "data-turbolinks-track" => true %>
+  <%= stylesheet_link_tag    "application", "decoimage", :media => "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "pictures" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <div id="header-wrapper">
+  <div id="header-wrapper" style="text-align: center">
 	<div id="header">
 		<div id="logo">
 			<%= link_to image_tag("chatoncrevette.jpg", :alt => "C'pas d'pot si tu peux pas voir", :width => "300px"), root_path %>
 		</div>
 		<div id="menu">
-			<ul>
+			
 			  <% if controller_name == 'portal' %>
 			  	<li class="activemenu">
 			  <% else%>
@@ -60,7 +61,7 @@
 		<%= link_to "Mon Compte(Admin)", adminprofil_path %></li>
 		<li><%= link_to 'Déconnexion', destroy_admin_session_path, :method => :delete %></li>
 	<% end %>
-			</ul>
+			
 		</div>
 	</div>
   </div>
@@ -68,6 +69,135 @@
   <div id="page-wrapper">
 	<div id="page">
 		<div id="content">
+			<div id="lefty">
+  				<div id="leftgauchehaut" style="position:relative;z-index: 0;">
+					<div id="tl-corner">
+						<%= image_tag("coin_4.jpg", :id=>"leftcorner") %>
+					</div>
+    			</div>
+    			<div id="lefttitlecadre">
+    				<div id="backyleft">
+    					<%= image_tag("cadre.jpg", :width => "81%") %>
+    				</div>
+    				<div id="leftytitle">
+    					Menu
+    				</div>
+				</div>
+    			<div id="milieumidhaut" style="position:relative;z-index: 200;">
+					<br />
+					
+					<span id="leftlink">
+						<%= link_to "Accueil", root_path %><br />
+						<%= link_to "Liste des Membres", user_list_path %><br />
+						<%= link_to "Galeries", maingalls_path %><br />
+					</span>
+					<span style="float:right"></span>
+				</div>
+    			<div id="droitehaut" style="position:relative;z-index: 0;">
+					<div id="tr-corner">
+						<!-- <img src="/images/coin3.jpg" width="200%;"></img> -->
+						<%= image_tag("coin3.jpg", :id=>"leftcorner") %>
+					</div>
+				</div>
+				<div style="clear:both;"> </div>
+				<div id="gauchebas" style="position:relative;z-index: 0;">
+					<div id="bl-corner">
+						<%= image_tag("coin1.jpg", :id=>"leftcorner") %>
+					</div>
+				</div>
+				<div id="milieubas"> </div>
+				<div id="droitebas">
+					<div id="br-corner" style="position:relative;z-index: 0;">
+						<%= image_tag("coin2.jpg", :id=>"leftcorner") %>
+					</div>
+				</div>
+				<div style="clear:both;"> </div>
+				
+				
+				
+				<div id="leftgauchemidhaut" style="position:relative;z-index: 0;margin-top: -5px;">
+					<div id="tl-corner">
+						<%= image_tag("coin_4.jpg", :id=>"leftcorner") %>
+					</div>
+    			</div>
+    			<div id="leftmidtitlecadre">
+    				<div id="backymidleft">
+    					<%= image_tag("cadre.jpg", :width => "81%") %>
+    				</div>
+    				<div id="leftymidtitle">
+    					Archives
+    				</div>
+				</div>
+    			<div id="milieumidhaut" style="position:relative;z-index: 200;">
+					<br />
+					
+					<span id="leftlink" style="text-align: center;"><%= link_to "Accueil", root_path %></span>
+					<span style="float:right"></span>
+				</div>
+    			<div id="droitemidhaut" style="position:relative;z-index: 0;">
+					<div id="tr-corner">
+						<!-- <img src="/images/coin3.jpg" width="200%;"></img> -->
+						<%= image_tag("coin3.jpg", :id=>"leftcorner") %>
+					</div>
+				</div>
+				<div style="clear:both"> </div>
+				<div id="gauchebas" style="position:relative;z-index: 0;">
+					<div id="bl-corner">
+						<%= image_tag("coin1.jpg", :id=>"leftcorner") %>
+					</div>
+				</div>
+				<div id="milieubas"> </div>
+				<div id="droitebas">
+					<div id="br-corner" style="position:relative;z-index: 0;">
+						<%= image_tag("coin2.jpg", :id=>"leftcorner") %>
+					</div>
+				</div>
+				
+				
+				
+				<div style="clear:both;"> </div>
+				
+				
+				
+				<div id="leftgauchemidhaut" style="position:relative;z-index: 0;margin-top: -5px;">
+					<div id="tl-corner">
+						<%= image_tag("coin_4.jpg", :id=>"leftcorner") %>
+					</div>
+    			</div>
+    			<div id="leftmidtitlecadre">
+    				<div id="backymidleft">
+    					<%= image_tag("cadre.jpg", :width => "81%") %>
+    				</div>
+    				<div id="leftymidtitle">
+    					Liens
+    				</div>
+				</div>
+    			<div id="milieumidhaut" style="position:relative;z-index: 200;">
+					<br />
+					
+					<span id="leftlink" style="text-align: center;"><%= link_to "Accueil", root_path %></span>
+					<span style="float:right"></span>
+				</div>
+    			<div id="droitemidhaut" style="position:relative;z-index: 0;">
+					<div id="tr-corner">
+						<!-- <img src="/images/coin3.jpg" width="200%;"></img> -->
+						<%= image_tag("coin3.jpg", :id=>"leftcorner") %>
+					</div>
+				</div>
+				<div style="clear:both"> </div>
+				<div id="gauchebas" style="position:relative;z-index: 0;">
+					<div id="bl-corner">
+						<%= image_tag("coin1.jpg", :id=>"leftcorner") %>
+					</div>
+				</div>
+				<div id="milieubas"> </div>
+				<div id="droitebas">
+					<div id="br-corner" style="position:relative;z-index: 0;">
+						<%= image_tag("coin2.jpg", :id=>"leftcorner") %>
+					</div>
+				</div>
+
+  			</div>
 			<div>
 
 	<%= yield %>

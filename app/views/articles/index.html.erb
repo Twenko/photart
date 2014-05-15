@@ -1,41 +1,46 @@
-<h1>Articles <% if admin_signed_in? %>(administration)<% end %></h1><br />
-
-<table>
-  <tr>
-    <th>Titre</th>
-    <th>Auteur</th>
-    <th>Galerie</th>
-    <th>Photo</th>
-    <th></th>
-    <th></th>
-    <% if admin_signed_in? %>
-    	<th></th>
-    	<th></th>
-    <% end %>
-  </tr>
 
 <% @articles.each do |article| %>
   <% if article.activate %>
-  <tr>
-    <td><%= article.title %></td>
-    <td><%= Admin.find(article.poster_id).nick %></td>
-    <td><%= article.gallery_id %></td>
-    <td><%= article.picture_id %></td>
-    <td><%= article.posts.count %> Commentaire(s)</td>
-    <td><%= link_to 'Permalien', article %></td>
-    <% if admin_signed_in? %>
-    <td><%= link_to 'Editer', edit_article_path(article) %></td>
-    <td><%= link_to 'Supprimer', article, :confirm => 'Are you sure?', :method => :delete %></td>
-    <% end %>
-  </tr>
+  	<div id="cadre">
+		<div id="gauchehaut">
+			<div id="tl-corner">
+				<%= image_tag("tlcorner.jpg", :id=>"midcorner") %>
+			</div>
+		</div>
+		<div id="milieuhaut">
+			<h1><%= article.title %></h1><br />
+			<span id="txtarticle"><%= article.content %></span><br />
+			<span id="finarti">Le <%= article.created_at.strftime("%d-%m-%y") %> à <%= article.created_at.strftime("%H:%M:%S")%></span> par <%= Admin.find(article.poster_id).nick %> -
+			<%= link_to "#{article.posts.count} Commentaire(s)", article %>
+			<span style="float:right"></span>
+		</div>
+		<div id="droitehaut">
+			<div id="tr-corner">
+				<%= image_tag("trcorner.jpg", :id=>"midcorner") %>
+			</div>
+		</div>
+		<div style="clear:both"> </div>
+		<div id="gauchebas">
+			<div id="bl-corner">
+				<%= image_tag("blcorner.jpg", :id=>"midcorner") %>
+			</div>
+		</div>
+		<div id="milieubas"> </div>
+		<div id="droitebas">
+			<div id="br-corner">
+				<%= image_tag("brcorner.jpg", :id=>"midcorner") %>
+			</div>
+		</div>
+	</div>
   <% end %>
 <% end %>
-</table>
+
+<br />
+
 <div>
 	<%= paginate @articles %>
 </div>
 <br />
 <% if admin_signed_in? %>
-<%= link_to 'Nouvel article', new_article_path %><br />
+	<%= link_to 'Nouvel article', new_article_path %><br /><br />
 <% end %>
-<%= link_to 'Retour', :back %>

@@ -1,0 +1,38 @@
+#midcorner{
+	width:100%;
+}
+
+#leftcorner{
+	width:200%;
+}
+
+#tl-corner{
+	position:relative;
+	float:left;
+	margin-left:5px;
+	margin-top:5px;
+}
+
+#tr-corner{
+	position:relative;
+	float:right;
+	margin-right:5px;
+	margin-top:5px;
+}
+
+#bl-corner{
+	position:relative;
+	float:left;
+	margin-left:5px;
+	margin-bottom:5px;
+	bottom:0px;
+}
+
+#br-corner{
+	position:relative;
+	float:right;
+	margin-right:5px;
+	margin-bottom:5px;
+	bottom:0;
+	right:0;
+}
