@@ -25,7 +25,14 @@
 </p>
 -----------------(Ceci n'est pas un trait)-----------------
 <br /><br />
-(insérer lightbox ici)
+<% @gallery.pictures.each do |picture| %>
+  <% if picture.image? %>
+	
+    <%= link_to image_tag(picture.image_url(:thumb)), picture.image_url, :"data-lightbox"=>"all", :"data-title"=>picture.description, :class=>"lightimage" %>
+
+
+  <% end %>
+<% end %>
 <br /><br />
 <% if current_admin %>
   <%= form_for Picture.new, :multipart => true do |f| %>

@@ -2,8 +2,8 @@
   <% if article.activate %>
   	<div id="cadre">
 		<div id="gauchehaut">
-			<div id="tl-corner">
-				<%= image_tag("tlcorner.jpg", :id=>"midcorner") %>
+			<div class="tl-corner">
+				<%= image_tag("tlcorner.jpg", :class=>"midcorner") %>
 			</div>
 		</div>
 		<div id="milieuhaut">
@@ -13,21 +13,21 @@
 			<%= link_to "#{article.posts.count} Commentaire(s)", article %>
 			<span style="float:right"></span>
 		</div>
-		<div id="droitehaut">
-			<div id="tr-corner">
-				<%= image_tag("trcorner.jpg", :id=>"midcorner") %>
+		<div class="droitehaut">
+			<div class="tr-corner">
+				<%= image_tag("trcorner.jpg", :class=>"midcorner") %>
 			</div>
 		</div>
 		<div style="clear:both"> </div>
-		<div id="gauchebas">
-			<div id="bl-corner">
-				<%= image_tag("blcorner.jpg", :id=>"midcorner") %>
+		<div class="gauchebas">
+			<div class="bl-corner">
+				<%= image_tag("blcorner.jpg", :class=>"midcorner") %>
 			</div>
 		</div>
-		<div id="milieubas"> </div>
-		<div id="droitebas">
-			<div id="br-corner">
-				<%= image_tag("brcorner.jpg", :id=>"midcorner") %>
+		<div class="milieubas"> </div>
+		<div class="droitebas">
+			<div class="br-corner">
+				<%= image_tag("brcorner.jpg", :class=>"midcorner") %>
 			</div>
 		</div>
 	</div>

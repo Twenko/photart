@@ -22,7 +22,7 @@
     <td><%= picture.gallery_id %></td>
     <td><%= picture.name %></td>
     <td><%= picture.description %></td>
-    <td><%= image_tag picture.image_url(:thumb) %></td>
+    <td><%= link_to image_tag(picture.image_url(:thumb)), picture.image_url, :"data-lightbox"=>"all", :"data-title"=>picture.description, :class=>"lightimage" %></td>
     <td><%= link_to 'Voir', picture %></td>
     <td><%= link_to 'Editer', edit_picture_path(picture) %></td>
     <td><%= link_to 'Supprimer', picture, :confirm => 'Are you sure?', :method => :delete %></td>
@@ -30,6 +30,16 @@
   <% end %>
 <% end %>
 </table>
+
+<% @pictures.each do |picture| %>
+  <% if picture.image? %>
+	
+    <%= link_to image_tag(picture.image_url(:thumb)), picture.image_url, :"data-lightbox"=>"all", :"data-title"=>picture.description, :class=>"lightimage" %>
+
+
+  <% end %>
+<% end %>
+
 
 <br />
 
