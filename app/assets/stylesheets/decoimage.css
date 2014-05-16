@@ -37,6 +37,10 @@
 	right:0;
 }
 
+.leftcadre{
+	width:81%;
+}
+
 .lightimage img{
 	border:3px solid #E6E7DC;
 	text-decoration:none;
